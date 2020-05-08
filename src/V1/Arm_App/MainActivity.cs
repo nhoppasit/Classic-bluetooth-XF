@@ -42,12 +42,12 @@ namespace Arm_App
         //Id Unico de comunicacion
         private static UUID MY_UUID = UUID.FromString("00001101-0000-1000-8000-00805F9B34FB");
 
-        protected override void OnCreate(Bundle bundle) 
+        protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-             SetContentView (Resource.Layout.Main);
+            SetContentView(Resource.Layout.Main);
             conectar = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
             Result = FindViewById<TextView>(Resource.Id.textView1);
             Result2 = FindViewById<TextView>(Resource.Id.textView2);
@@ -65,7 +65,7 @@ namespace Arm_App
             var seekbar6 = FindViewById<SeekBar>(Resource.Id.seekBar6);
             conectar.CheckedChange += tgConnect_HandleCheckedChange;
 
-             CheckBt();
+            CheckBt();
 
             seekbar1.StopTrackingTouch += (s, e) =>
             {
@@ -252,7 +252,8 @@ namespace Arm_App
             }
             //Creamos un hilo que estara corriendo en background el cual verificara si hay algun dato
             //por parte del arduino
-            Task.Factory.StartNew(() => {
+            Task.Factory.StartNew(() =>
+            {
                 //declaramos el buffer donde guardaremos la lectura
                 byte[] buffer = new byte[1024];
                 //declaramos el numero de bytes recibidos
@@ -267,7 +268,8 @@ namespace Arm_App
                         if (bytes > 0)
                         {
                             //Corremos en la interfaz principal
-                            RunOnUiThread(() => {
+                            RunOnUiThread(() =>
+                            {
                                 //Convertimos el valor de la informacion llegada a string
                                 string valor = System.Text.Encoding.ASCII.GetString(buffer);
                                 //Agregamos a nuestro label la informacion llegada
@@ -278,7 +280,8 @@ namespace Arm_App
                     catch (Java.IO.IOException)
                     {
                         //En caso de error limpiamos nuestra label y cortamos el hilo de comunicacion
-                        RunOnUiThread(() => {
+                        RunOnUiThread(() =>
+                        {
                             Result.Text = string.Empty;
                         });
                         break;
