@@ -39,10 +39,11 @@ namespace Arm_App
         private Stream outStream = null;
         private Stream inStream = null;
         //MAC Address del dispositivo Bluetooth
-        private static string address = "98:D3:C1:FD:41:51"; //98d3:c1:fd4151
+        private static string address = "88:25:83:F0:D4:15"; //98d3:c1:fd4151
 
         //Id Unico de comunicacion
-        private string sUuid = "00001101-0000-1000-8000-00805F9B34FB";
+        //private string sUuid = "00001101-0000-1000-8000-00805F9B34FB";
+        private string sUuid = "0000FFE1-0000-1000-8000-00805F9B34FB";
         private static UUID MY_UUID = UUID.FromString("00001101-0000-1000-8000-00805F9B34FB");
 
         CB_V1 btClass;

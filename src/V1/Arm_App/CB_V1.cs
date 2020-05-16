@@ -142,7 +142,7 @@ namespace ClassicBluetooth
             {
                 Log.Debug("CB_V1", $"กำลังสร้าง Socket และเชื่อมต่อ");
                 mBluetoothAdapter.CancelDiscovery();
-                btSocket = device.CreateRfcommSocketToServiceRecord(mUuid);
+                btSocket = device.CreateInsecureRfcommSocketToServiceRecord(mUuid);
                 Log.Debug("CB_V1", $"{btSocket} สร้างแล้ว");
                 btSocket.Connect();
                 Log.Debug("CB_V1", $"{Address} เชื่อมต่อแล้ว");
@@ -230,92 +230,92 @@ namespace ClassicBluetooth
             }
         }
 
-        private void beginListenForData()
-        {
-            //Extraemos el stream de entrada
-            try
-            {
-                //inStream = btSocket.InputStream;
-                inStream = btClass.BluetoothSocket.InputStream;
-            }
-            catch (System.IO.IOException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            //Creamos un hilo que estara corriendo en background el cual verificara si hay algun dato
-            //por parte del arduino
-            Task.Factory.StartNew(() =>
-            {
-                //declaramos el buffer donde guardaremos la lectura
-                byte[] buffer = new byte[1024];
-                //declaramos el numero de bytes recibidos
-                int bytes;
-                while (true)
-                {
-                    try
-                    {
-                        //leemos el buffer de entrada y asignamos la cantidad de bytes entrantes
-                        bytes = inStream.Read(buffer, 0, buffer.Length);
-                        //Verificamos que los bytes contengan informacion
-                        if (bytes > 0)
-                        {
-                            //Corremos en la interfaz principal
-                            RunOnUiThread(() =>
-                            {
-                                //Convertimos el valor de la informacion llegada a string
-                                string valor = System.Text.Encoding.ASCII.GetString(buffer);
-                                //Agregamos a nuestro label la informacion llegada
-                                Result.Text = Result.Text + "\n" + valor;
-                            });
-                        }
-                    }
-                    catch (Java.IO.IOException)
-                    {
-                        //En caso de error limpiamos nuestra label y cortamos el hilo de comunicacion
-                        RunOnUiThread(() =>
-                        {
-                            Result.Text = string.Empty;
-                        });
-                        break;
-                    }
-                }
-            });
-        }
+        //private void beginListenForData()
+        //{
+        //    //Extraemos el stream de entrada
+        //    try
+        //    {
+        //        //inStream = btSocket.InputStream;
+        //        inStream = btClass.BluetoothSocket.InputStream;
+        //    }
+        //    catch (System.IO.IOException ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //    //Creamos un hilo que estara corriendo en background el cual verificara si hay algun dato
+        //    //por parte del arduino
+        //    Task.Factory.StartNew(() =>
+        //    {
+        //        //declaramos el buffer donde guardaremos la lectura
+        //        byte[] buffer = new byte[1024];
+        //        //declaramos el numero de bytes recibidos
+        //        int bytes;
+        //        while (true)
+        //        {
+        //            try
+        //            {
+        //                //leemos el buffer de entrada y asignamos la cantidad de bytes entrantes
+        //                bytes = inStream.Read(buffer, 0, buffer.Length);
+        //                //Verificamos que los bytes contengan informacion
+        //                if (bytes > 0)
+        //                {
+        //                    //Corremos en la interfaz principal
+        //                    RunOnUiThread(() =>
+        //                    {
+        //                        //Convertimos el valor de la informacion llegada a string
+        //                        string valor = System.Text.Encoding.ASCII.GetString(buffer);
+        //                        //Agregamos a nuestro label la informacion llegada
+        //                        Result.Text = Result.Text + "\n" + valor;
+        //                    });
+        //                }
+        //            }
+        //            catch (Java.IO.IOException)
+        //            {
+        //                //En caso de error limpiamos nuestra label y cortamos el hilo de comunicacion
+        //                RunOnUiThread(() =>
+        //                {
+        //                    Result.Text = string.Empty;
+        //                });
+        //                break;
+        //            }
+        //        }
+        //    });
+        //}
 
         //Metodo de envio de datos la bluetooth
-        private void writeData(Java.Lang.String data)
-        {
-            //Extraemos el stream de salida
-            try
-            {
-                //outStream = btSocket.OutputStream;
-                outStream = btClass.BluetoothSocket.OutputStream;
-            }
-            catch (System.Exception e)
-            {
-                System.Console.WriteLine("Error al enviar" + e.Message);
-            }
+        //private void writeData(Java.Lang.String data)
+        //{
+        //    //Extraemos el stream de salida
+        //    try
+        //    {
+        //        //outStream = btSocket.OutputStream;
+        //        outStream = btClass.BluetoothSocket.OutputStream;
+        //    }
+        //    catch (System.Exception e)
+        //    {
+        //        System.Console.WriteLine("Error al enviar" + e.Message);
+        //    }
 
-            //creamos el string que enviaremos
-            Java.Lang.String message = data;
+        //    //creamos el string que enviaremos
+        //    Java.Lang.String message = data;
 
-            //lo convertimos en bytes
-            byte[] msgBuffer = message.GetBytes();
+        //    //lo convertimos en bytes
+        //    byte[] msgBuffer = message.GetBytes();
 
-            try
-            {
-                //Escribimos en el buffer el arreglo que acabamos de generar
-                outStream.Write(msgBuffer, 0, msgBuffer.Length);
-            }
-            catch (System.Exception e)
-            {
-                System.Console.WriteLine("Error al enviar" + e.Message);
-            }
-        }
+        //    try
+        //    {
+        //        //Escribimos en el buffer el arreglo que acabamos de generar
+        //        outStream.Write(msgBuffer, 0, msgBuffer.Length);
+        //    }
+        //    catch (System.Exception e)
+        //    {
+        //        System.Console.WriteLine("Error al enviar" + e.Message);
+        //    }
+        //}
 
-        public async Task<BaseSimpleReturn> CheckAsync()
-        {
+        //public async Task<BaseSimpleReturn> CheckAsync()
+        //{
 
-        }
+        //}
     }
 }
