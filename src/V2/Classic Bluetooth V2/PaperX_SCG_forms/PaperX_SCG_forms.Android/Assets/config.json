@@ -1,0 +1,9 @@
+﻿{
+  "app_name": "PaperX_SCG",
+  "SW_Server": "https://paperx.septiem-dev.com",
+  "machine_name": "machine01",
+  "machine_password": "Qq123456",
+  "time_closeDoor": "60",
+    "time_page" :  "180"
+
+}

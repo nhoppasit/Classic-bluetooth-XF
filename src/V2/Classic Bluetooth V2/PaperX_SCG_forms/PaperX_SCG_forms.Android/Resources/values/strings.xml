@@ -1,0 +1,12 @@
+﻿<resources>
+  <string name="app_name">PaperX_SCG</string>
+  <string name="SW_Server">https://paperx.septiem-dev.com</string>
+  <string name="machine_name">machine01</string>
+  <string name="machine_password">Qq123456</string>
+   <string name="time_closeDoor">60</string>
+
+  <string name="action_settings">Settings</string>
+  <string name="refreshing">Refreshing...</string>
+  <string name="sleep">Sleep</string>
+  <string name="wakeup">Wakeup</string>
+</resources>

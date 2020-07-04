@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PaperX_SCG_forms.Views.ServicePage"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="absLayout">
+            <AbsoluteLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Page_Tapped"/>
+            </AbsoluteLayout.GestureRecognizers>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+
+                <!-- MCU -->
+                <StackLayout x:Name="layoutMcu" Orientation="Horizontal">
+
+                    <Label Text="WS: " VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                    <Label x:Name="lblWebServiceStatus" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+
+                </StackLayout>
+
+                <!-- Scale indicator -->
+                <StackLayout x:Name="layoutInidicator" Orientation="Horizontal">
+
+                    <Label Text="HW: " VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                    <Label x:Name="lblHardwaresConnectionStatus" 
+                           VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+
+                </StackLayout>
+
+                <!-- Next text -->
+                <StackLayout x:Name="layoutTimerToMainPage" Orientation="Horizontal" IsVisible="False">
+                    <Label Text="NEXT: " VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                    <Label x:Name="lblTimer" 
+                           VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+                </StackLayout>
+
+                <!-- Alarm text -->
+                <StackLayout x:Name="layoutAlarm" Orientation="Horizontal" IsVisible="False">
+                    <Label Text="ALARM: " VerticalOptions="CenterAndExpand" HorizontalOptions="Start"/>
+                    <Label x:Name="lblAlarm" TextColor="Red"
+                           VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" />
+                </StackLayout>
+
+                <!-- Buttons -->
+                <StackLayout x:Name="layoutManualControl" Orientation="Vertical" IsVisible="True">
+                    <StackLayout x:Name="layoutCheckZone" Orientation="Horizontal">
+                        <Button x:Name="btnCheckWs" Clicked="BtnCheckWs_Clicked"
+                                Text="WS"/>
+                        <Button x:Name="btnCheckHw" Clicked="BtnCheckHw_Clicked"
+                                Text="Hardwares"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="btnMainPage" Clicked="BtnMainPage_Clicked"
+                                Text="Main Page"/>
+                    </StackLayout>
+
+                    <!--Scale indicator-->
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="btnReadWeight" Clicked="BtnReadWeight_Clicked"
+                                Text="Read Weight"/>
+                    </StackLayout>
+
+                    <!--MCU: shutter control panel-->
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="btnHomeShutter" Clicked="BtnHomeShutter_Clicked"
+                                Text="Home Shutter"/>
+                        <Button x:Name="btnOpenShutter" Clicked="BtnOpenShutter_Clicked"
+                                Text="Open Shutter"/>
+                        <Button x:Name="btnCloseShutter" Clicked="BtnCloseShutter_Clicked"
+                                Text="Close Shutter"/>
+                    </StackLayout>
+
+                    <!--MCU: kicker control panel-->
+                    <StackLayout Orientation="Horizontal">
+                        <Button x:Name="btnExitApp" Clicked="btnExitApp_Clicked"
+                                Text="Exit"/>
+                    </StackLayout>
+
+                    <!--MCU: sensors panel-->
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical">
+                            <Button x:Name="btnReadSensors" Clicked="BtnReadSensors_Clicked"
+                                Text="Read Sensors (Auto 20 s)"/>
+                            <StackLayout x:Name="layoutSensors" Orientation="Horizontal" IsVisible="False">
+                                <Label x:Name="lblS1" BackgroundColor="DimGray" Text=" 1 " TextColor="White"/>
+                                <Label x:Name="lblS2" BackgroundColor="DimGray" Text=" 2 " TextColor="White"/>
+                                <Label x:Name="lblS3" BackgroundColor="DimGray" Text=" 3 " TextColor="White"/>
+                                <Label x:Name="lblS4" BackgroundColor="DimGray" Text=" 4 " TextColor="White"/>
+                                <Label x:Name="lblS5" BackgroundColor="DimGray" Text=" 5 " TextColor="White"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+
+
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>
